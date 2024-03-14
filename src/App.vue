@@ -3,19 +3,43 @@
   <Header title="Tasks"/>
   <Button text="New Task" color="green"/>
   <Button text="Delete Task" color="red"/>
+  <Tasks :tasks="tasks"/>
   </div>
 </template>
 
 <script>
   import Header from './components/Header.vue'
   import Button from './components/Button.vue'
+  import Tasks from './components/Tasks.vue'
 
   export default {
     name: 'App',
     components: {
       Header,
-      Button
+      Button,
+      Tasks
     },
+    data(){
+      return {
+        tasks: []
+      }
+    },
+    created(){
+      this.tasks = [
+        {
+          id: 1,
+          title: 'Run',
+          day: "March 5th at 2:30pm",
+          reminder: true
+        },
+        {
+          id: 2,
+          title: 'Fly',
+          day: "March 7th at 2:30pm",
+          reminder: false
+        }
+      ]
+    }
   }
 </script>
 
