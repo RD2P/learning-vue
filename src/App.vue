@@ -1,19 +1,23 @@
+<template>
+  <div class="container">
+  <Header title="Tasks"/>
+  <Button text="New Task" color="green"/>
+  <Button text="Delete Task" color="red"/>
+  </div>
+</template>
+
 <script>
   import Header from './components/Header.vue'
+  import Button from './components/Button.vue'
 
   export default {
     name: 'App',
     components: {
       Header,
+      Button
     },
   }
 </script>
-
-<template>
-  <div class="container">
-  <Header title="New title"/>
-  </div>
-</template>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
