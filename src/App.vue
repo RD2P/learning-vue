@@ -1,8 +1,9 @@
 <template>
   <div class="container">
-  <Header title="Tasks"/>
- 
-  <AddTask />
+  <Header title="Tasks" @show-add-task="showAddTask" />
+  <div v-show="showTaskInput">
+    <AddTask />
+  </div>
   <Tasks 
     :tasks="tasks" 
     @delete-task="onDelete"
@@ -24,6 +25,9 @@
       AddTask
     },
     methods: {
+      showAddTask(){
+        this.showTaskInput = !this.showTaskInput
+      },
       onDelete(id){
         if (confirm(`Are you sure you want to delete this task?`)) {
           this.tasks = this.tasks.filter(task => task.id!== id)
