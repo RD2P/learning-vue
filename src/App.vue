@@ -3,7 +3,11 @@
   <Header title="Tasks"/>
   <Button text="New Task" color="green"/>
   <Button text="Delete Task" color="red"/>
-  <Tasks :tasks="tasks" @delete-task="onDelete"/>
+  <Tasks 
+    :tasks="tasks" 
+    @delete-task="onDelete"
+    @remind-task="onRemind"
+    />
   </div>
 </template>
 
@@ -20,10 +24,17 @@
       Tasks
     },
     methods: {
-      onDelete(id, title){
+      onDelete(id){
         if (confirm(`Are you sure you want to delete this task?`)) {
           this.tasks = this.tasks.filter(task => task.id!== id)
         }
+      },
+      onRemind(id){
+        this.tasks.map((task)=> {
+          if (task.id === id) {
+            task.reminder =!task.reminder
+          }
+        })
       }
     },
     data(){
