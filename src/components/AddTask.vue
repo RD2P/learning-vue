@@ -1,24 +1,100 @@
 <template>
-  <div>
-    <p>Task name</p>
-    <input type='text' placeholder="Task name"/>
-    <p>Date</p>
-    <input type='text' placeholder="Date"/><br>
-    <span>Reminder</span>
-    <input type='checkbox' placeholder="Task name"/>
-  </div>
+	<form @submit="onSubmit">
+		<label for="name">Task name</label>
+		<input
+			type="text"
+			id="name"
+			name="name"
+			v-model="name"
+			placeholder="Add task name"
+		/>
+
+		<label for="date">Date</label>
+		<input
+			type="text"
+			id="date"
+			name="date"
+			v-model="date"
+			placeholder="Date"
+		/>
+
+		<div>
+			<label for="reminder">Set reminder</label>
+			<input
+				name="reminder"
+				type="checkbox"
+				v-model="reminder"
+				placeholder="Task name"
+			/>
+		</div>
+
+		<input type="submit" value="Add" />
+	</form>
 </template>
 
 <script>
-  export default {
-    name: 'AddTask'
-  }
+	export default {
+		name: "AddTask",
+		methods: {
+			onSubmit(e) {
+				e.preventDefault();
+
+				const task = {
+					id: Math.floor(Math.random() * 1000000000),
+					title: this.name,
+					day: this.date,
+					reminder: this.reminder,
+				};
+
+				this.$emit("add-task", task);
+
+				this.name = "";
+				this.date = "";
+				this.reminder = false;
+			},
+		},
+		data() {
+			return {
+				name: "",
+				date: "",
+				reminder: false,
+			};
+		},
+	};
 </script>
 
 <style scoped>
-  div {
-    border: 1px black solid;
-    margin: 0.5rem;
-    padding: 0.5rem;
-  }
+	form {
+		margin: 0.5rem;
+		padding: 0.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		background: rgb(230, 251, 230);
+	}
+
+	input {
+		padding: 0.35rem;
+		border: 1px solid rgb(198, 193, 193);
+	}
+
+	input:focus {
+		outline: none;
+		border: 1px solid green;
+	}
+
+	input[type="checkbox"] {
+		margin-left: 1rem;
+		transform: scale(1.2);
+	}
+
+	input[type="submit"] {
+		background: green;
+		color: white;
+		padding: 0.5rem 0;
+	}
+
+	input[type="submit"]:hover {
+		opacity: 0.8;
+	}
 </style>
