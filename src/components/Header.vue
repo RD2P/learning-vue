@@ -1,30 +1,34 @@
 <template>
-  <header>
-    <h1>{{ title }}</h1>
-    <Button text="New Task" color="green" @clicked="$emit('show-add-task')"/>  
-  </header>
+	<header>
+		<h1>{{ title }}</h1>
+		<Button
+			:text="showTaskInput ? 'Close' : 'Add task'"
+			:color="showTaskInput ? 'red' : 'green'"
+			@clicked="$emit('show-add-task')"
+		/>
+	</header>
 </template>
 
 <script>
-import Button from './Button.vue'
-  export default {
-    name: 'Header',
-    props: {
-      title: String,
-    },
-    components: {
-      Button
-    },
-    emits: ['show-add-task']
-  }
+	import Button from "./Button.vue";
+	export default {
+		name: "Header",
+		props: {
+			title: String,
+			showTaskInput: Boolean,
+		},
+		components: {
+			Button,
+		},
+		emits: ["show-add-task"],
+	};
 </script>
 
 <style scoped>
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-
+	header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 1rem;
+	}
 </style>
