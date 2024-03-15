@@ -1,118 +1,117 @@
 <template>
-  <div class="container">
-  <Header title="Tasks" @show-add-task="showAddTask" />
-  <div v-show="showTaskInput">
-    <AddTask />
-  </div>
-  <Tasks 
-    :tasks="tasks" 
-    @delete-task="onDelete"
-    @remind-task="onRemind"
-    />
-  </div>
+	<div class="container">
+		<Header title="Tasks" @show-add-task="showAddTask" />
+		<div v-show="showTaskInput">
+			<AddTask @add-task="addTask" />
+		</div>
+		<Tasks :tasks="tasks" @delete-task="onDelete" @remind-task="onRemind" />
+	</div>
 </template>
 
 <script>
-  import Header from './components/Header.vue'
-  import Tasks from './components/Tasks.vue'
-  import AddTask from './components/AddTask.vue'
+	import Header from "./components/Header.vue";
+	import Tasks from "./components/Tasks.vue";
+	import AddTask from "./components/AddTask.vue";
 
-  export default {
-    name: 'App',
-    components: {
-      Header,
-      Tasks,
-      AddTask
-    },
-    methods: {
-      showAddTask(){
-        this.showTaskInput = !this.showTaskInput
-      },
-      onDelete(id){
-        if (confirm(`Are you sure you want to delete this task?`)) {
-          this.tasks = this.tasks.filter(task => task.id!== id)
-        }
-      },
-      onRemind(id){
-        this.tasks.map((task)=> {
-          if (task.id === id) {
-            task.reminder =!task.reminder
-          }
-        })
-      }
-    },
-    data(){
-      return {
-        tasks: [],
-        showTaskInput: true
-      }
-    },
-    created(){
-      this.tasks = [
-        {
-          id: 1,
-          title: 'Run',
-          day: "March 5th at 2:30pm",
-          reminder: true
-        },
-        {
-          id: 2,
-          title: 'Fly',
-          day: "March 7th at 2:30pm",
-          reminder: false
-        }
-      ]
-    }
-  }
+	export default {
+		name: "App",
+		components: {
+			Header,
+			Tasks,
+			AddTask,
+		},
+		methods: {
+			showAddTask() {
+				this.showTaskInput = !this.showTaskInput;
+			},
+			addTask(task){
+				this.tasks = [...this.tasks, task]
+			},
+			onDelete(id) {
+				if (confirm(`Are you sure you want to delete this task?`)) {
+					this.tasks = this.tasks.filter((task) => task.id !== id);
+				}
+			},
+			onRemind(id) {
+				this.tasks.map((task) => {
+					if (task.id === id) {
+						task.reminder = !task.reminder;
+					}
+				});
+			},
+		},
+		data() {
+			return {
+				tasks: [],
+				showTaskInput: true,
+			};
+		},
+		created() {
+			this.tasks = [
+				{
+					id: 1,
+					title: "Run",
+					day: "March 5th at 2:30pm",
+					reminder: true,
+				},
+				{
+					id: 2,
+					title: "Fly",
+					day: "March 7th at 2:30pm",
+					reminder: false,
+				},
+			];
+		},
+	};
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+	@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
 
-body {
-  font-family: 'Poppins', sans-serif;
-}
+	body {
+		font-family: "Poppins", sans-serif;
+	}
 
-.container {
-  max-width: 500px;
-  margin: 30px auto;
-  overflow: auto;
-  min-height: 300px;
-  border: 1px solid steelblue;
-  padding: 30px;
-  border-radius: 5px;
-}
+	.container {
+		max-width: 500px;
+		margin: 30px auto;
+		overflow: auto;
+		min-height: 300px;
+		border: 1px solid steelblue;
+		padding: 30px;
+		border-radius: 5px;
+	}
 
-.btn {
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 15px;
-  font-family: inherit;
-}
+	.btn {
+		display: inline-block;
+		background: #000;
+		color: #fff;
+		border: none;
+		padding: 10px 20px;
+		margin: 5px;
+		border-radius: 5px;
+		cursor: pointer;
+		text-decoration: none;
+		font-size: 15px;
+		font-family: inherit;
+	}
 
-.btn:focus {
-  outline: none;
-}
+	.btn:focus {
+		outline: none;
+	}
 
-.btn:active {
-  transform: scale(0.98);
-}
+	.btn:active {
+		transform: scale(0.98);
+	}
 
-.btn-block {
-  display: block;
-  width: 100%;
-}
+	.btn-block {
+		display: block;
+		width: 100%;
+	}
 </style>
