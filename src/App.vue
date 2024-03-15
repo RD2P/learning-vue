@@ -1,8 +1,8 @@
 <template>
   <div class="container">
   <Header title="Tasks"/>
-  <Button text="New Task" color="green"/>
-  <Button text="Delete Task" color="red"/>
+ 
+  <AddTask />
   <Tasks 
     :tasks="tasks" 
     @delete-task="onDelete"
@@ -13,15 +13,15 @@
 
 <script>
   import Header from './components/Header.vue'
-  import Button from './components/Button.vue'
   import Tasks from './components/Tasks.vue'
+  import AddTask from './components/AddTask.vue'
 
   export default {
     name: 'App',
     components: {
       Header,
-      Button,
-      Tasks
+      Tasks,
+      AddTask
     },
     methods: {
       onDelete(id){
@@ -39,7 +39,8 @@
     },
     data(){
       return {
-        tasks: []
+        tasks: [],
+        showTaskInput: true
       }
     },
     created(){
