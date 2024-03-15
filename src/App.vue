@@ -3,7 +3,7 @@
   <Header title="Tasks"/>
   <Button text="New Task" color="green"/>
   <Button text="Delete Task" color="red"/>
-  <Tasks :tasks="tasks"/>
+  <Tasks :tasks="tasks" @delete-task="onDelete"/>
   </div>
 </template>
 
@@ -18,6 +18,13 @@
       Header,
       Button,
       Tasks
+    },
+    methods: {
+      onDelete(id, title){
+        if (confirm(`Are you sure you want to delete this task?`)) {
+          this.tasks = this.tasks.filter(task => task.id!== id)
+        }
+      }
     },
     data(){
       return {
