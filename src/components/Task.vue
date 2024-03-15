@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <h3>{{ task.title }}</h3>
+  <div :class="[task.reminder ? 'reminder' : 'blue', 'task']">
+    <h3>{{ task.title }}
+      <i @click="$emit('delete-task')" class="fas fa-times"></i>
+    </h3>
     <p>{{task.day}}</p>
+    
   </div>
 </template>
 
@@ -15,5 +18,24 @@
 </script>
 
 <style scoped>
+  .fas {
+    color: red;
+    cursor: pointer;
+  }
 
+  .task {
+    background: #f4f4f4;
+    margin: 5px;
+    padding: 10px 20px;
+  }
+
+  .task.reminder {
+    border-left: 5px solid green;
+  }
+
+  .task h3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 </style>
