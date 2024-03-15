@@ -1,6 +1,10 @@
 <template>
 	<div class="container">
-		<Header title="Tasks" @show-add-task="showAddTask" />
+		<Header
+			title="Tasks"
+			@show-add-task="showAddTask"
+			:showTaskInput="showTaskInput"
+		/>
 		<div v-show="showTaskInput">
 			<AddTask @add-task="addTask" />
 		</div>
@@ -20,12 +24,18 @@
 			Tasks,
 			AddTask,
 		},
+		data() {
+			return {
+				tasks: [],
+				showTaskInput: true,
+			};
+		},
 		methods: {
 			showAddTask() {
 				this.showTaskInput = !this.showTaskInput;
 			},
-			addTask(task){
-				this.tasks = [...this.tasks, task]
+			addTask(task) {
+				this.tasks = [...this.tasks, task];
 			},
 			onDelete(id) {
 				if (confirm(`Are you sure you want to delete this task?`)) {
@@ -39,12 +49,6 @@
 					}
 				});
 			},
-		},
-		data() {
-			return {
-				tasks: [],
-				showTaskInput: true,
-			};
 		},
 		created() {
 			this.tasks = [
