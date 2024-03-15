@@ -27,7 +27,7 @@
 		data() {
 			return {
 				tasks: [],
-				showTaskInput: true,
+				showTaskInput: false,
 			};
 		},
 		methods: {
