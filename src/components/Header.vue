@@ -1,7 +1,7 @@
 <template>
   <header>
     <h1>{{ title }}</h1>
-    <Button text="New Task" color="green"/>  
+    <Button text="New Task" color="green" @clicked="$emit('show-add-task')"/>  
   </header>
 </template>
 
@@ -14,7 +14,8 @@ import Button from './Button.vue'
     },
     components: {
       Button
-    }
+    },
+    emits: ['show-add-task']
   }
 </script>
 
