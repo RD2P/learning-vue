@@ -1,6 +1,10 @@
 <template>
   <div v-for="task in tasks" v-bind:key="task.id">
-    <Task :task="task" @delete-task="$emit('delete-task', task.id)" />
+    <Task 
+      :task="task" 
+      @delete-task="$emit('delete-task', task.id)" 
+      @remind-task="$emit('remind-task', task.id)" 
+      />
     </div>
 </template>
 
@@ -15,6 +19,6 @@
     components: {
       Task  
     },
-    emits: ['delete-task'],
+    emits: ['delete-task', 'remind-task'],
   }
 </script>
