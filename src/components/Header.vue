@@ -3,7 +3,7 @@
 		<h1>{{ title }}</h1>
 		<Button
 			:text="showTaskInput ? 'Close' : 'Add task'"
-			:color="showTaskInput ? 'red' : 'green'"
+			:color="showTaskInput ? '#f58a42' : '#4287f5'"
 			@clicked="$emit('show-add-task')"
 		/>
 	</header>
