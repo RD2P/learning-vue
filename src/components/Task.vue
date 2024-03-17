@@ -27,7 +27,7 @@
   }
 
   .bell {
-    color: green;
+    color: #4287f5;
     margin-right: 0.5rem;
     cursor: pointer;
   }
@@ -47,7 +47,7 @@
   }
 
   .task.reminder {
-    border-left: 5px solid green;
+    border-left: 5px solid #4287f5;
   }
 
   .task h3 {
