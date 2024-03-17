@@ -7,6 +7,7 @@
 			name="name"
 			v-model="name"
 			placeholder="Add task name"
+			required
 		/>
 
 		<label for="date">Date</label>
@@ -16,6 +17,7 @@
 			name="date"
 			v-model="date"
 			placeholder="Date"
+			required
 		/>
 
 		<div>
@@ -70,7 +72,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
-		background: rgb(230, 251, 230);
+		background: rgb(227, 238, 254);
 	}
 
 	input {
@@ -89,7 +91,7 @@
 	}
 
 	input[type="submit"] {
-		background: green;
+		background: #3780f6;
 		color: white;
 		padding: 0.5rem 0;
 	}
